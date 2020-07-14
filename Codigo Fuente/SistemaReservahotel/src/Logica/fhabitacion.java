@@ -99,18 +99,6 @@ public class fhabitacion {
      } 
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
    public boolean insertar (vhabitacion dts){
        sSQL="insert into habitacion (numero,piso,descripcion,caracteristicas,precio_diario,estado,tipo_habitacion)" +
                "values (?,?,?,?,?,?,?)";
@@ -232,9 +220,9 @@ public class fhabitacion {
        
        try {
            
-           PreparedStatement pst=cn.prepareStatement(sSQL);
-           
-           pst.setInt(1, dts.getIdhabitacion());
+         PreparedStatement pst=cn.prepareStatement(sSQL);
+           pst.setString(1, dts.getNumero());
+   
            
            int n=pst.executeUpdate();
            
