@@ -1,5 +1,6 @@
 package Presentacion;
 
+import Datos.vhabitacion;
 import Logica.fhabitacion;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,23 +18,23 @@ public class frmhabitacion extends javax.swing.JFrame {
         initComponents();
     }
 
-  private String accion="guardar";
-  
-  void ocultar_columna (){
-      tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
-     tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
-       tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
-  }
-  
-  void inhabilitar(){
-       txtidhabitacion.setVisible(false);
-       cbopiso.setEnabled(false);
-       txtnumero.setEnabled(false);
-       txtdescripcion.setEnabled(false);
-       txtcaracteristicas.setEnabled(false);
-       cboestado.setEnabled(false);
-       cbotipo_habitacion.setEnabled(false);
-       
+    private String accion = "guardar";
+
+    void ocultar_columna() {
+        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+    }
+
+    void inhabilitar() {
+        txtidhabitacion.setVisible(false);
+        cbopiso.setEnabled(false);
+        txtnumero.setEnabled(false);
+        txtdescripcion.setEnabled(false);
+        txtcaracteristicas.setEnabled(false);
+        cboestado.setEnabled(false);
+        cbotipo_habitacion.setEnabled(false);
+
         btnguardar.setEnabled(false);
         btncancelar.setEnabled(false);
         btneliminar.setEnabled(false);
@@ -42,17 +43,18 @@ public class frmhabitacion extends javax.swing.JFrame {
         txtidhabitacion.setText("");
         txtcaracteristicas.setText("");
         txtdescripcion.setText("");
-         
-        }
-    void habilitar(){
-       txtidhabitacion.setVisible(true);
-       cbopiso.setEnabled(true);
-       txtnumero.setEnabled(true);
-       txtdescripcion.setEnabled(true);
-       txtcaracteristicas.setEnabled(true);
-       cboestado.setEnabled(true);
-       cbotipo_habitacion.setEnabled(true);
-       
+
+    }
+
+    void habilitar() {
+        txtidhabitacion.setVisible(true);
+        cbopiso.setEnabled(true);
+        txtnumero.setEnabled(true);
+        txtdescripcion.setEnabled(true);
+        txtcaracteristicas.setEnabled(true);
+        cboestado.setEnabled(true);
+        cbotipo_habitacion.setEnabled(true);
+
         btnguardar.setEnabled(true);
         btncancelar.setEnabled(true);
         btneliminar.setEnabled(true);
@@ -61,28 +63,26 @@ public class frmhabitacion extends javax.swing.JFrame {
         txtidhabitacion.setText("");
         txtcaracteristicas.setText("");
         txtdescripcion.setText("");
-         
+
+    }
+
+    void mostrar(String buscar) {
+        try {
+            DefaultTableModel modelo;
+            fhabitacion func = new fhabitacion();
+            modelo = func.mostrar(buscar);
+
+            tablalistado.setModel(modelo);
+            ocultar_columna();
+            lbltotalregistros.setText("total de registros" + Integer.toString(func.totalregistros));
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(rootPane, e);
+
         }
-       void mostrar(String buscar){
-           try {
-               DefaultTableModel modelo;
-               fhabitacion func= new fhabitacion();
-               modelo=func.mostrar(buscar);
-               
-               tablalistado.setModel(modelo);
-               ocultar_columna();
-               lbltotalregistros.setText("total de registros" + Integer.toString(func.totalregistros));
-               
-               
-           } catch (Exception e) {
-               JOptionPane.showConfirmDialog(rootPane, e);
-               
-           }
-           
-         
-        }
-    
-    
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -334,7 +334,7 @@ public class frmhabitacion extends javax.swing.JFrame {
             }
         });
 
-        btncancelar.setBackground(new java.awt.Color(51, 51, 51));
+        btncancelar.setBackground(new java.awt.Color(0, 0, 0));
         btncancelar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btncancelar.setForeground(new java.awt.Color(255, 255, 255));
         btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/cancelar.png"))); // NOI18N
@@ -379,8 +379,7 @@ public class frmhabitacion extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(btnguardar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btncancelar)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addComponent(btncancelar)))))))
                 .addGap(101, 101, 101))
         );
         jPanel1Layout.setVerticalGroup(
@@ -462,11 +461,11 @@ public class frmhabitacion extends javax.swing.JFrame {
     }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-        
+
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-       
+
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
@@ -476,7 +475,7 @@ public class frmhabitacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-   
+
 
     }//GEN-LAST:event_btnReporteActionPerformed
 
@@ -507,11 +506,66 @@ public class frmhabitacion extends javax.swing.JFrame {
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // TODO add your handling code here:
-       
+        habilitar();
+        btnguardar.setText("Guardar");
+        accion = "guardar";
+
+
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
 
+        if (txtnumero.getText().length() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un Número de habitación");
+            txtnumero.requestFocus();
+            return;
+        }
+        if (txtdescripcion.getText().length() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar una descripcion para la Habitación Habitación");
+            txtdescripcion.requestFocus();
+            return;
+        }
+        if (txtprecio_diario.getText().length() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un precio diario para la Habitación");
+            txtprecio_diario.requestFocus();
+            return;
+        }
+        if (txtcaracteristicas.getText().length() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar una caracteristica para la Habitsción Habitación");
+            txtcaracteristicas.requestFocus();
+            return;
+        }
+
+        vhabitacion dts = new vhabitacion();
+        fhabitacion func = new fhabitacion();
+
+        dts.setNumero(txtnumero.getText());
+
+        int seleccionado = cbopiso.getSelectedIndex();
+         dts.setPiso((String) cbopiso.getItemAt(seleccionado));
+
+        dts.setDescripcion(txtdescripcion.getText());
+        dts.setDescripcion(txtcaracteristicas.getText());
+        
+        /**
+     * si nos diera error la siguiente linea es que setPrecio esta esperando un valor 
+     * numerico y le estamos enviando texto para solucionarlo es necesario utilizar Double.parse.Double
+     */
+        
+        dts.setPrecio_diario(Double.parseDouble(txtprecio_diario.getText()));
+        
+         seleccionado = cboestado.getSelectedIndex();
+         dts.setEstado((String) cbopiso.getItemAt(seleccionado));
+         
+         seleccionado = cbotipo_habitacion.getSelectedIndex();
+         dts.setTipo_habitacion((String) cbotipo_habitacion.getItemAt(seleccionado));
+         
+         
+         
+         
+         
+         
+         
     }//GEN-LAST:event_btnguardarActionPerformed
 
     /**
