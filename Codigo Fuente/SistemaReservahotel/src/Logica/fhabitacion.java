@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Christopher Reyes
  */
 public class fhabitacion {
-    
+        
    private conexion mysql=new conexion();
    private Connection cn=mysql.conectar();
    private String sSQL="";
@@ -97,6 +97,18 @@ public class fhabitacion {
            return null;
        }
      } 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
    
    public boolean insertar (vhabitacion dts){
@@ -220,9 +232,9 @@ public class fhabitacion {
        
        try {
            
-         PreparedStatement pst=cn.prepareStatement(sSQL);
-           pst.setString(1, dts.getNumero());
-   
+           PreparedStatement pst=cn.prepareStatement(sSQL);
+           
+           pst.setInt(1, dts.getIdhabitacion());
            
            int n=pst.executeUpdate();
            

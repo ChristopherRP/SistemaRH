@@ -1,10 +1,14 @@
 package Presentacion;
 
 import Datos.vhabitacion;
+import Logica.conexion;
 import Logica.fhabitacion;
+import java.io.File;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Christopher Reyes
@@ -16,13 +20,17 @@ public class frmhabitacion extends javax.swing.JFrame {
      */
     public frmhabitacion() {
         initComponents();
+        mostrar("");
+        inhabilitar();
+        
+        
     }
 
     private String accion = "guardar";
 
-    void ocultar_columna() {
+    void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
-        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
 
@@ -32,6 +40,7 @@ public class frmhabitacion extends javax.swing.JFrame {
         txtnumero.setEnabled(false);
         txtdescripcion.setEnabled(false);
         txtcaracteristicas.setEnabled(false);
+        txtprecio_diario.setEnabled(false);
         cboestado.setEnabled(false);
         cbotipo_habitacion.setEnabled(false);
 
@@ -40,18 +49,27 @@ public class frmhabitacion extends javax.swing.JFrame {
         btneliminar.setEnabled(false);
         txtidhabitacion.setText("");
         txtprecio_diario.setText("");
-        txtidhabitacion.setText("");
         txtcaracteristicas.setText("");
         txtdescripcion.setText("");
 
     }
 
+    void limpiar(){
+        txtbuscar.setText("");
+        txtnumero.setText("");
+        txtdescripcion.setText("");
+        txtcaracteristicas.setText("");
+        txtprecio_diario.setText("");
+        
+    }
     void habilitar() {
-        txtidhabitacion.setVisible(true);
+        txtidhabitacion.setVisible(false);
+
         cbopiso.setEnabled(true);
         txtnumero.setEnabled(true);
         txtdescripcion.setEnabled(true);
         txtcaracteristicas.setEnabled(true);
+        txtprecio_diario.setEnabled(true);
         cboestado.setEnabled(true);
         cbotipo_habitacion.setEnabled(true);
 
@@ -60,7 +78,6 @@ public class frmhabitacion extends javax.swing.JFrame {
         btneliminar.setEnabled(true);
         txtidhabitacion.setText("");
         txtprecio_diario.setText("");
-        txtidhabitacion.setText("");
         txtcaracteristicas.setText("");
         txtdescripcion.setText("");
 
@@ -73,16 +90,13 @@ public class frmhabitacion extends javax.swing.JFrame {
             modelo = func.mostrar(buscar);
 
             tablalistado.setModel(modelo);
-            ocultar_columna();
-            lbltotalregistros.setText("total de registros" + Integer.toString(func.totalregistros));
+            ocultar_columnas();
+            lbltotalregistros.setText("Total Registros " + Integer.toString(func.totalregistros));
 
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
-
         }
-
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -138,7 +152,15 @@ public class frmhabitacion extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablalistado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablalistadoMouseClicked(evt);
@@ -205,10 +227,8 @@ public class frmhabitacion extends javax.swing.JFrame {
                     .addComponent(jScrollPane3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
@@ -339,6 +359,11 @@ public class frmhabitacion extends javax.swing.JFrame {
         btncancelar.setForeground(new java.awt.Color(255, 255, 255));
         btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/cancelar.png"))); // NOI18N
         btncancelar.setText("Cancelar");
+        btncancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -437,7 +462,7 @@ public class frmhabitacion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -457,21 +482,60 @@ public class frmhabitacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
-
+        
+        // TODO add your handling code here:
+        btnguardar.setText("Editar");
+        habilitar();
+        btneliminar.setEnabled(true);
+        accion="editar";
+        
+        int fila = tablalistado.rowAtPoint(evt.getPoint());
+        
+        txtidhabitacion.setText(tablalistado.getValueAt(fila, 0).toString());
+        txtnumero.setText(tablalistado.getValueAt(fila, 1).toString());
+        
+       cbopiso.setSelectedItem(tablalistado.getValueAt(fila, 2).toString());
+       txtdescripcion.setText(tablalistado.getValueAt(fila, 3).toString());
+       txtcaracteristicas.setText(tablalistado.getValueAt(fila, 4).toString());
+        txtprecio_diario.setText(tablalistado.getValueAt(fila, 5).toString());
+        
+        cboestado.setSelectedItem(tablalistado.getValueAt(fila, 6).toString());
+        cbotipo_habitacion.setSelectedItem(tablalistado.getValueAt(fila, 7).toString());
+        
+       
+       
+        
     }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-
+        // TODO add your handling code here:
+        mostrar(txtbuscar.getText());
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-
+        // TODO add your handling code here:
+        if (!txtidhabitacion.getText().equals("")) {
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar la Habitación?","Confirmar",2);
+            
+            if (confirmacion==0) {
+                fhabitacion func = new fhabitacion ();
+                vhabitacion dts= new vhabitacion();
+                
+                dts.setIdhabitacion(Integer.parseInt(txtidhabitacion.getText()));
+                func.eliminar(dts);
+                mostrar("");
+                inhabilitar();
+                limpiar();
+                
+            }
+            
+            
+        }
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
-
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
@@ -501,37 +565,40 @@ public class frmhabitacion extends javax.swing.JFrame {
 
     private void cbotipo_habitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotipo_habitacionActionPerformed
         // TODO add your handling code here:
-        transferFocus();
+        cbotipo_habitacion.transferFocus();
     }//GEN-LAST:event_cbotipo_habitacionActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // TODO add your handling code here:
+        limpiar();
         habilitar();
         btnguardar.setText("Guardar");
         accion = "guardar";
-
 
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
 
+  // TODO add your handling code here:
         if (txtnumero.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un Número de habitación");
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un Número de Habitación");
             txtnumero.requestFocus();
             return;
         }
         if (txtdescripcion.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar una descripcion para la Habitación Habitación");
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar una descripción para la Habitación Habitación");
             txtdescripcion.requestFocus();
             return;
         }
+
         if (txtprecio_diario.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un precio diario para la Habitación");
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un precio diario para la Habitación Habitación");
             txtprecio_diario.requestFocus();
             return;
         }
+
         if (txtcaracteristicas.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar una caracteristica para la Habitsción Habitación");
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar una característica para la Habitación Habitación");
             txtcaracteristicas.requestFocus();
             return;
         }
@@ -542,32 +609,59 @@ public class frmhabitacion extends javax.swing.JFrame {
         dts.setNumero(txtnumero.getText());
 
         int seleccionado = cbopiso.getSelectedIndex();
-         dts.setPiso((String) cbopiso.getItemAt(seleccionado));
+        dts.setPiso((String) cbopiso.getItemAt(seleccionado));
 
         dts.setDescripcion(txtdescripcion.getText());
-        dts.setDescripcion(txtcaracteristicas.getText());
-        
-        /**
-     * si nos diera error la siguiente linea es que setPrecio esta esperando un valor 
-     * numerico y le estamos enviando texto para solucionarlo es necesario utilizar Double.parse.Double
-     */
+        dts.setCaracteristicas(txtcaracteristicas.getText());
         
         dts.setPrecio_diario(Double.parseDouble(txtprecio_diario.getText()));
         
-         seleccionado = cboestado.getSelectedIndex();
-         dts.setEstado((String) cbopiso.getItemAt(seleccionado));
-         
-         seleccionado = cbotipo_habitacion.getSelectedIndex();
-         dts.setTipo_habitacion((String) cbotipo_habitacion.getItemAt(seleccionado));
-         
-         
-         
-         
-         
-         
-         
+        seleccionado = cboestado.getSelectedIndex();
+        dts.setEstado((String) cboestado.getItemAt(seleccionado));
+        
+        seleccionado = cbotipo_habitacion.getSelectedIndex();
+        dts.setTipo_habitacion((String) cbotipo_habitacion.getItemAt(seleccionado));
+        
+        
+        if (accion.equals("guardar")) {
+            if (func.insertar(dts)) {
+                JOptionPane.showMessageDialog(rootPane, "La habitación fue registrada satisfactoriamente");
+                mostrar("");
+                inhabilitar();
+                limpiar();
+            }
+            
+            
+            
+            
+        }
+        else if (accion.equals("editar")){
+            dts.setIdhabitacion(Integer.parseInt(txtidhabitacion.getText()));
+            
+            
+            if (func.editar(dts)) {
+                JOptionPane.showMessageDialog(rootPane, "La habitación fue Editada satisfactoriamente");
+                mostrar("");
+                inhabilitar();
+                limpiar();
+            }
+        }
+        
+        
+        
+        
+               
     }//GEN-LAST:event_btnguardarActionPerformed
 
+    private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this,"No se realizaron cambios");
+        inhabilitar();
+        limpiar();
+    }//GEN-LAST:event_btncancelarActionPerformed
+            
+        //trae el metodo conexion
+        private Connection connection=new conexion().conectar();
     /**
      * @param args the command line arguments
      */
