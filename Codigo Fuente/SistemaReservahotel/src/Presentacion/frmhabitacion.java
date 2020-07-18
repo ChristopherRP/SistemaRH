@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Christopher Reyes
  */
-public class frmhabitacion extends javax.swing.JFrame {
+public class frmhabitacion extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form frmhabitacion
