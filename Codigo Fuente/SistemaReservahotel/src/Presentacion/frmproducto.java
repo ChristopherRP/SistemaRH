@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Christopher Reyes
  */
-public class frmproducto extends javax.swing.JFrame {
+public class frmproducto extends javax.swing.JInternalFrame{
 
     /**
      * Creates new form frmproducto
@@ -129,7 +129,10 @@ public class frmproducto extends javax.swing.JFrame {
         btnsalir = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de Productos"));
@@ -233,8 +236,7 @@ public class frmproducto extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(59, 59, 59)
-                                .addComponent(txtprecio_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(txtprecio_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(101, 101, 101))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(141, 141, 141)

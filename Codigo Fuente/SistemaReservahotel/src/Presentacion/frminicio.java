@@ -30,37 +30,68 @@ public class frminicio extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        lblidpersona = new javax.swing.JLabel();
+        lblnombre = new javax.swing.JLabel();
+        lblapaterno = new javax.swing.JLabel();
+        lblamaterno = new javax.swing.JLabel();
+        lblacceso = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        editMenu = new javax.swing.JMenu();
+        mnusisreserva = new javax.swing.JMenu();
+        mnuarchivo = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
         copyMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
+        mnureservas = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnuconsultas = new javax.swing.JMenu();
+        mnuconfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        mnuherramientas = new javax.swing.JMenu();
+        mnuayuda = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        mnusalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         escritorio.setBackground(new java.awt.Color(153, 153, 153));
 
-        fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/Startupfolder_5943.png"))); // NOI18N
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("Sisreserva");
-        menuBar.add(fileMenu);
+        lblidpersona.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblidpersona.setText("jLabel1");
+        escritorio.add(lblidpersona);
+        lblidpersona.setBounds(30, 20, 150, 14);
 
-        editMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/folder_add_icon-icons.com_74436.png"))); // NOI18N
-        editMenu.setMnemonic('e');
-        editMenu.setText("Archivo");
+        lblnombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblnombre.setText("jLabel2");
+        escritorio.add(lblnombre);
+        lblnombre.setBounds(30, 60, 150, 14);
 
+        lblapaterno.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblapaterno.setText("jLabel3");
+        escritorio.add(lblapaterno);
+        lblapaterno.setBounds(30, 100, 150, 14);
+
+        lblamaterno.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblamaterno.setText("jLabel4");
+        escritorio.add(lblamaterno);
+        lblamaterno.setBounds(30, 140, 150, 14);
+
+        lblacceso.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblacceso.setText("jLabel5");
+        escritorio.add(lblacceso);
+        lblacceso.setBounds(30, 190, 150, 14);
+
+        mnusisreserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/Startupfolder_5943.png"))); // NOI18N
+        mnusisreserva.setMnemonic('f');
+        mnusisreserva.setText("Sisreserva");
+        menuBar.add(mnusisreserva);
+
+        mnuarchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/folder_add_icon-icons.com_74436.png"))); // NOI18N
+        mnuarchivo.setMnemonic('e');
+        mnuarchivo.setText("Archivo");
+
+        cutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         cutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/bed_rest_sleep_sick_patient_bed_rest_icon_134759.png"))); // NOI18N
         cutMenuItem.setMnemonic('t');
         cutMenuItem.setText("Habitaciones");
@@ -69,8 +100,9 @@ public class frminicio extends javax.swing.JFrame {
                 cutMenuItemActionPerformed(evt);
             }
         });
-        editMenu.add(cutMenuItem);
+        mnuarchivo.add(cutMenuItem);
 
+        copyMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         copyMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/if-food-c201-2427847_85683.png"))); // NOI18N
         copyMenuItem.setMnemonic('y');
         copyMenuItem.setText("productos");
@@ -79,19 +111,21 @@ public class frminicio extends javax.swing.JFrame {
                 copyMenuItemActionPerformed(evt);
             }
         });
-        editMenu.add(copyMenuItem);
+        mnuarchivo.add(copyMenuItem);
 
-        menuBar.add(editMenu);
+        menuBar.add(mnuarchivo);
 
-        helpMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/computer_84314.png"))); // NOI18N
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Reservas");
+        mnureservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/computer_84314.png"))); // NOI18N
+        mnureservas.setMnemonic('h');
+        mnureservas.setText("Reservas");
 
+        contentMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         contentMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/iconfinder-document08-1622828_121955.png"))); // NOI18N
         contentMenuItem.setMnemonic('c');
         contentMenuItem.setText("Reservas y Consumos");
-        helpMenu.add(contentMenuItem);
+        mnureservas.add(contentMenuItem);
 
+        aboutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/loginmanager_10029.png"))); // NOI18N
         aboutMenuItem.setMnemonic('a');
         aboutMenuItem.setText("Clientes");
@@ -100,45 +134,59 @@ public class frminicio extends javax.swing.JFrame {
                 aboutMenuItemActionPerformed(evt);
             }
         });
-        helpMenu.add(aboutMenuItem);
+        mnureservas.add(aboutMenuItem);
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/1486564172-finance-loan-money_81492.png"))); // NOI18N
         jMenuItem1.setText("Pagos");
-        helpMenu.add(jMenuItem1);
+        mnureservas.add(jMenuItem1);
 
-        menuBar.add(helpMenu);
+        menuBar.add(mnureservas);
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/1491253410-6document-report_82881.png"))); // NOI18N
-        jMenu1.setText("Consultas");
-        menuBar.add(jMenu1);
+        mnuconsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/1491253410-6document-report_82881.png"))); // NOI18N
+        mnuconsultas.setText("Consultas");
+        menuBar.add(mnuconsultas);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/file_configuration_22776.png"))); // NOI18N
-        jMenu2.setText("Configuraciones");
+        mnuconfiguraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/file_configuration_22776.png"))); // NOI18N
+        mnuconfiguraciones.setText("Configuraciones");
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/User_Computer_23097.png"))); // NOI18N
         jMenuItem2.setText("Usuarios y Accesos");
-        jMenu2.add(jMenuItem2);
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        mnuconfiguraciones.add(jMenuItem2);
 
-        menuBar.add(jMenu2);
+        menuBar.add(mnuconfiguraciones);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/systempackages_config_configuration_9436.png"))); // NOI18N
-        jMenu3.setText("Herramientas");
-        menuBar.add(jMenu3);
+        mnuherramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/systempackages_config_configuration_9436.png"))); // NOI18N
+        mnuherramientas.setText("Herramientas");
+        menuBar.add(mnuherramientas);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/support_call_center_help_information_customer_service_icon_140644.png"))); // NOI18N
-        jMenu4.setText("Ayuda");
+        mnuayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/support_call_center_help_information_customer_service_icon_140644.png"))); // NOI18N
+        mnuayuda.setText("Ayuda");
 
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem3.setText("Acerca de...");
-        jMenu4.add(jMenuItem3);
+        mnuayuda.add(jMenuItem3);
 
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem4.setText("Ayuda");
-        jMenu4.add(jMenuItem4);
+        mnuayuda.add(jMenuItem4);
 
-        menuBar.add(jMenu4);
+        menuBar.add(mnuayuda);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/SignOut_icon-icons.com_74704.png"))); // NOI18N
-        jMenu5.setText("Salir");
-        menuBar.add(jMenu5);
+        mnusalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/File/SignOut_icon-icons.com_74704.png"))); // NOI18N
+        mnusalir.setText("Salir");
+        mnusalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnusalirMouseClicked(evt);
+            }
+        });
+        menuBar.add(mnusalir);
 
         setJMenuBar(menuBar);
 
@@ -158,6 +206,10 @@ public class frminicio extends javax.swing.JFrame {
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         // TODO add your handling code here:
+         frmcliente form =new frmcliente();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
@@ -171,8 +223,24 @@ public class frminicio extends javax.swing.JFrame {
     private void copyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItemActionPerformed
         // TODO add your handling code here:
 
-
+       frmproducto form =new frmproducto();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_copyMenuItemActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        frmtrabajador form =new  frmtrabajador();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void mnusalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnusalirMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_mnusalirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -214,20 +282,25 @@ public class frminicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenu editMenu;
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    public static javax.swing.JLabel lblacceso;
+    public static javax.swing.JLabel lblamaterno;
+    public static javax.swing.JLabel lblapaterno;
+    public static javax.swing.JLabel lblidpersona;
+    public static javax.swing.JLabel lblnombre;
     private javax.swing.JMenuBar menuBar;
+    public static javax.swing.JMenu mnuarchivo;
+    private javax.swing.JMenu mnuayuda;
+    public static javax.swing.JMenu mnuconfiguraciones;
+    private javax.swing.JMenu mnuconsultas;
+    private javax.swing.JMenu mnuherramientas;
+    private javax.swing.JMenu mnureservas;
+    private javax.swing.JMenu mnusalir;
+    private javax.swing.JMenu mnusisreserva;
     // End of variables declaration//GEN-END:variables
 
 }

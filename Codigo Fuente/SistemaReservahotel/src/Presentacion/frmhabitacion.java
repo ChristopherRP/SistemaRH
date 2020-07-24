@@ -133,7 +133,10 @@ public class frmhabitacion extends javax.swing.JInternalFrame {
         btnguardar = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Habitación");
