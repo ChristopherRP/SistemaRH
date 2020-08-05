@@ -827,7 +827,7 @@ public class frmreserva extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int fila = tablalistado.getSelectedRow();
 
-      /*  frmPago.idreserva = tablalistado.getValueAt(fila, 0).toString();
+       frmPago.idreserva = tablalistado.getValueAt(fila, 0).toString();
         frmPago.cliente = tablalistado.getValueAt(fila, 4).toString();
         frmPago.totalreserva =Double.parseDouble( tablalistado.getValueAt(fila, 11).toString());
 
@@ -838,7 +838,6 @@ public class frmreserva extends javax.swing.JInternalFrame {
         frminicio.escritorio.add(form);
         form.toFront();
         form.setVisible(true);
-*/
     }//GEN-LAST:event_btnrealizarpagosActionPerformed
 
     /**

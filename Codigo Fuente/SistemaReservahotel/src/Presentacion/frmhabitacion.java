@@ -9,6 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Christopher Reyes
@@ -541,8 +547,22 @@ public class frmhabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-
-
+        
+        Map p=new HashMap();
+        JasperReport report;
+        JasperPrint print;
+        
+        try {
+            report=JasperCompileManager.compileReport(new File("").getAbsolutePath()+
+                    "/src/Reportes/rpHabitaciones.jrxml");
+            print=JasperFillManager.fillReport(report, p,connection);
+            JasperViewer view=new JasperViewer(print,false);
+            view.setTitle("Reporte de Habitaciones");
+            view.setVisible(true);            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnReporteActionPerformed
 
     private void txtnumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumeroActionPerformed
